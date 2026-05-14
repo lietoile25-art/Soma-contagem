@@ -48,7 +48,7 @@ if fotos and st.button("🔍 Analisar e Somar"):
         try:
             dados = json.loads(re.search(r'\{[\s\S]*\}', texto).group())
             todos_itens.extend(dados["itens"])
-            total_geral += dados["total"]
+            total_geral += sum(item["quantidade"] for item in dados["itens"])
             st.success(f"✅ {foto.name} — {dados['total']} unidades")
         except:
             st.error(f"❌ Erro em {foto.name}: {texto[:200]}")
